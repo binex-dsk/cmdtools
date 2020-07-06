@@ -1,0 +1,27 @@
+#!/bin/bash
+if [ "$1" == "" ]
+then
+echo "usage: rmcmd [command]"
+echo "delete any command from your PATH"
+echo "example: rmcmd lscmd"
+exit 0
+fi
+
+if ! `lscmd $1`
+then
+echo "rmcmd: error: couldn't find command ${1}"
+exit 1
+fi
+
+declare paths=`echo $PATH | tr ":" "\n" | nl`
+declare cmddir=""
+for i in $paths
+do
+if [ -f "$i/$1" ]
+then
+cmddir="$i"
+break
+fi
+done
+
+sudo rm $cmddir/$1 && echo "rmcmd: successfully deleted command $1"

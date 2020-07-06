@@ -1,0 +1,32 @@
+#!/bin/bash
+if [ "$1" == "" ] || [ "$2" == "" ]
+then
+echo "usage: cpcmd [command name] [copied name]"
+echo "example: cpcmd cp copy"
+echo "copy an existing command in your PATH into a new command"
+exit 0
+fi
+
+if ! `lscmd $1`
+then
+echo "cpcmd: error: couldn't find command $1"
+exit 1
+fi
+if `lscmd $2`
+then
+echo "cpcmd: error: a command by the name of $2 already exists"
+exit 1
+fi
+
+declare paths=`echo $PATH | tr ":" "\n" | nl`
+declare cmddir=""
+for i in $paths
+do
+if [ -f "$i/$1" ]
+then
+cmddir="$i"
+break
+fi
+done
+
+sudo cp "$cmddir/$1" "$cmddir/$2" && echo "cpcmd: command $1 copied to $2" || echo "cpcmd: error: failed to copy $1 to $2"

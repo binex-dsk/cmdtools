@@ -1,0 +1,27 @@
+#!/bin/bash
+if [ "$1" == "" ]
+then
+echo "usage: editcmd [command]"
+echo "edit any command in your PATH"
+echo "example: editcmd lscmd"
+exit 0
+fi
+
+if ! `lscmd $1`
+then
+echo "editcmd: error: couldn't find command ${1}"
+exit 1
+fi
+
+declare paths=`echo $PATH | tr ":" "\n" | nl`
+declare cmddir=""
+for i in $paths
+do
+if [ -f "$i/$1" ]
+then
+cmddir="$i"
+break
+fi
+done
+
+sudo nano "$cmddir/$1"

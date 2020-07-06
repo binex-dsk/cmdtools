@@ -1,0 +1,30 @@
+#!/bin/bash
+if [ "$1" == "" ]
+then
+echo "usage: mkcmd [command name]"
+echo "creates a new bash command"
+echo "examples: mkcmd newcmd"
+exit 0
+fi
+
+if `lscmd $1`
+then
+echo "mkcmd: error: command $1 already exists"
+exit 1
+fi
+
+echo "#!/bin/bash" > ./$1
+sudo nano "./$1"
+declare filename="$1"
+
+if [ -f "$filename" ]
+then
+declare fln=`basename "$filename"`
+declare file=${fln%.*}
+sudo install -Dm755 "$filename" "/bin/$file"
+echo "mkcmd: successfully created command"
+exit 0
+else
+echo "mkcmd: error: failed to create file"
+exit 1
+fi
