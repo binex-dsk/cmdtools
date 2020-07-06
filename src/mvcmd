@@ -1,0 +1,32 @@
+#!/bin/bash
+if [ "$1" == "" ] || [ "$2" == "" ]
+then
+echo "usage: mvcmd [command name] [new name]"
+echo "example: mvcmd cp copy"
+echo "rename an existing command in your PATH"
+exit 0
+fi
+
+if ! `lscmd $1`
+then
+echo "mvcmd: error: couldn't find command $1"
+exit 1
+fi
+if `lscmd $2`
+then
+echo "mvcmd: error: a command by the name of $2 already exists"
+exit 1
+fi
+
+declare paths=`echo $PATH | tr ":" "\n" | nl`
+declare cmddir=""
+for i in $paths
+do
+if [ -f "$i/$1" ]
+then
+cmddir="$i"
+break
+fi
+done
+
+sudo mv "$cmddir/$1" "$cmddir/$2" && echo "mvcmd: command $1 renamed to $2" || echo "mvcmd: error: failed to rename $1 to $2"
