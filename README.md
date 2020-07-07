@@ -17,7 +17,7 @@ Example: `editcmd epic-cmd`
 ## findcmd
 Lists all commands in your PATH based on a search string.
 
-Usage: `findcmd SEARCH_STRING (NUMBER)
+Usage: `findcmd SEARCH_STRING (NUMBER)`
 
 Example: `findcmd ls 25`
 ## lscmd
