@@ -1,6 +1,15 @@
 # cmdtools
 A set of command manipulating, creating, and viewing tools for Linux.
 
+# installation
+This is available for Arch Linux on the AUR:
+```
+$ git clone https://aur.archlinux.org/cmdtools-git.git
+# trimmed
+$ cd cmdtools-git
+$ makepkg -si
+```
+Might make an install script later but idk
 # commands
 ## cpcmd
 Copies any command in your PATH to a different name.
