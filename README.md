@@ -10,6 +10,8 @@ $ cd cmdtools-git
 $ makepkg -si
 ```
 Might make an install script later but idk
+
+Either way, you can just install all the files to your PATH with 755 perms
 # commands
 ## cpcmd
 Copies any command in your PATH to a different name.
