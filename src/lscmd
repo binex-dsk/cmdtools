@@ -8,17 +8,8 @@ echo "example: lscmd find"
 echo "exit codes:"
 echo "0: command exists"
 echo "1: command doesn't exist"
-echo "2: some error occured"
 exit 0
 fi
 
-declare paths=`echo $PATH | tr ":" "\n" | nl`
-for i in $paths
-do
-if [ -f "$i/$1" ]
-then
-exit 0
-fi
-done
-
-exit 1
+cmddir &>/dev/null
+exit $?

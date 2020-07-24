@@ -22,6 +22,7 @@ then
 declare fln=`basename "$filename"`
 declare file=${fln%.*}
 sudo install -Dm755 "$filename" "/bin/$file"
+rm $filename
 echo "mkcmd: successfully created command"
 exit 0
 else

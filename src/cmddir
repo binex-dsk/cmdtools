@@ -1,0 +1,26 @@
+#!/bin/bash
+if [ "$1" == "" ]
+then
+echo "usage: cmddir [command]"
+echo "get the directory of a command"
+echo "example: cmddir lscmd"
+exit 0
+fi
+
+declare cmddir=""
+for i in `path`
+do
+if [ -f "$i/$1" ]
+then
+cmddir="$i"
+break
+fi
+done
+
+if [ "$cmddir" != "" ]
+then
+echo "$cmddir"
+else
+echo "cmddir: command does not exist"
+exit 1
+fi
