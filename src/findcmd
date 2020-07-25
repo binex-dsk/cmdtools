@@ -10,7 +10,7 @@ echo "findcmd ls"
 exit 0
 fi
 
-declare results=`find $(path) | grep "$1"`
+declare results=`find $(echo $PATH | tr ":" "\n") | grep "$1"`
 if [ "$2" != "" ]
 then
 if [ "$2" > 0 ]

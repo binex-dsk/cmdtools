@@ -8,7 +8,7 @@ exit 0
 fi
 
 declare cmddir=""
-for i in `path`
+for i in `echo $PATH | tr ":" "\n"`
 do
 if [ -f "$i/$1" ]
 then
