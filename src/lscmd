@@ -11,5 +11,5 @@ echo "1: command doesn't exist"
 exit 0
 fi
 
-cmddir &>/dev/null
+cmddir $1 &> /dev/null
 exit $?
