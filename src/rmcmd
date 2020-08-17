@@ -13,15 +13,6 @@ echo "rmcmd: error: couldn't find command ${1}"
 exit 1
 fi
 
-declare paths=`echo $PATH | tr ":" "\n" | nl`
-declare cmddir=""
-for i in $paths
-do
-if [ -f "$i/$1" ]
-then
-cmddir="$i"
-break
-fi
-done
+declare cmddir=`cmddir $1`
 
 sudo rm $cmddir/$1 && echo "rmcmd: successfully deleted command $1"

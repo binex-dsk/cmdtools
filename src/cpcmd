@@ -18,15 +18,6 @@ echo "cpcmd: error: a command by the name of $2 already exists"
 exit 1
 fi
 
-declare paths=`echo $PATH | tr ":" "\n" | nl`
-declare cmddir=""
-for i in $paths
-do
-if [ -f "$i/$1" ]
-then
-cmddir="$i"
-break
-fi
-done
+declare cmddir=`cmddir $1`
 
 sudo cp "$cmddir/$1" "$cmddir/$2" && echo "cpcmd: command $1 copied to $2" || echo "cpcmd: error: failed to copy $1 to $2"

@@ -10,12 +10,12 @@ echo "findcmd ls"
 exit 0
 fi
 
-declare results=$(ls /bin | grep "$1")
+declare results=`find $(echo $PATH | tr ":" "\n") | grep "$1"`
 if [ "$2" != "" ]
 then
 if [ "$2" > 0 ]
 then
-results=$(find $(echo $PATH | tr ":" "\n" | nl) | grep "$1" | head -n "$2")
+results=`echo $results | head -n "$2"`
 fi
 fi
 declare len=0
@@ -23,7 +23,7 @@ for i in $results; do (( len += 1 )); done
 if [ $len == 0 ]
 then
 echo "findcmd: found no results"
-exit 0
+exit 1
 fi
 echo "findcmd: found $len results:"
 for i in $results; do echo `basename $i`; done
