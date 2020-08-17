@@ -9,10 +9,24 @@ $ git clone https://aur.archlinux.org/cmdtools-git.git
 $ cd cmdtools-git
 $ makepkg -si
 ```
-Might make an install script later but idk
-
-Either way, you can just install all the files to your PATH with 755 perms
+Or using yay:
+```
+$ yay -S cmdtools-git
+```
+Or using the install script:
+```
+$ git clone https://github.com/binex-dsk/cmdtools.git
+# trimmed
+$ cd cmdtools
+$ ./install.sh
+```
 # commands
+## cmddir
+Gets the directory of a command in your PATH
+
+Usage: `cmddir COMMAND_NAME`
+
+Example: `cmddir epic-cmd`
 ## cpcmd
 Copies any command in your PATH to a different name.
 
